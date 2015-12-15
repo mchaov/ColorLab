@@ -71,6 +71,30 @@ var ColorLab = (function () {
                     return p;
                 }
             },
+            'random': {
+                writable: false,
+                enumerable: false,
+                configurable: false,
+                value: function (type)
+                {
+                    var type = type || '',
+                        randColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+                    switch (type.toLowerCase())
+                    {
+                        case 'rgb':
+                            return this.HEX2RGB(randColor);
+
+                        case 'hsl':
+                            var rgb = this.HEX2RGB(randColor);
+                            return this.RGB2HSL(rgb.r, rgb.g, rgb.b);
+
+                        default:
+                            return randColor;
+
+                    }
+                }
+            },
             'RGB2HSL': {
                 writable: false,
                 enumerable: false,
